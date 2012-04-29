@@ -7,10 +7,48 @@ Add the script tag to the page after loading jQuery.
 Then in your code:
 
 ```javascript
-$('div').relativeSelector()
+$('div').relativeSelector() // #page-text div.dokeeno-html:eq(1) div:eq(1)
 ```
 
-This will give you string to be used as a selector in the existing page structure, or should be able to be used in future runs of the page.
+# Examples
+Given a page like:
 
+```html
+<html>
+  <head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jQuery.relativeSelector.js"></script>
+  </head>
 
+  <body>
+    <div id="firstDiv">
+    </div>
+    <div>
+    </div>
+    <div class="firstClass">
+      <div></div>
+    </div>
+    <div class="secondClass">
+    </div>
+    <div class="secondClass">
+      <div></div>
+    </div>
+  </body>
+</html>
+```
 
+Running
+```javascript
+  $('div').each(function() { $('<div>').html( $(this).relativeSelector() ).appendTo('body'); });
+```
+
+will give you relative selectors that look like
+```
+#firstDiv
+body div:eq(1)
+div.firstClass
+div.firstClass div:eq(0)
+body div.secondClass:eq(0)
+body div.secondClass:eq(1)
+body div.secondClass:eq(1) div:eq(0)
+```

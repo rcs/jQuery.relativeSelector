@@ -29,7 +29,7 @@
         if ($(tag_and_class).length === 1) {
           return tag_and_class;
         } else {
-          return "" + (this.parent().persistentSelector()) + " " + tag_and_class + ":eq(" + (this.parent().children(tag_and_class).index(this)) + ")";
+          return "" + (this.parent().relativeSelector()) + " " + tag_and_class + ":eq(" + (this.parent().children(tag_and_class).index(this)) + ")";
         }
       }
     };

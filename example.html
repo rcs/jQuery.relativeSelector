@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="jQuery.relativeSelector.js"></script>
+  </head>
+
+  <body>
+    <div id="firstDiv">
+    </div>
+    <div>
+    </div>
+    <div class="firstClass">
+      <div></div>
+    </div>
+    <div class="secondClass">
+    </div>
+    <div class="secondClass">
+      <div></div>
+    </div>
+  </body>
+
+  <script>
+    $(function() {
+      $('div').each(function() {
+        $('<div>').html( $(this).relativeSelector() ).appendTo('body');
+      })
+    });
+  </script>
+</html>
